@@ -65,24 +65,42 @@ class ListingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Listing $listing)
     {
-        //
+        
+        return view('listings.edit', ['listing'=>$listing]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Listing $listing)
     {
-        //
+        $formField = $request->validate([
+            'title'=>'required',
+            'company'=>'required',
+            'location'=>'required',
+            'tags'=>'required',
+            'email'=>['required','email'],
+            'website'=>'required',
+            'description'=>'required',
+            
+
+        ]);
+        if ($request->hasFile('logo')) {
+            $formField['logo'] = $request->file('logo')->store('logos','public');
+        }
+        
+        $listing->update( $formField);
+        return redirect('/')->with('message','Listing Job Update Successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Listing $listing)
     {
-        //
+        $listing->delete();
+        return redirect('/')->with('message','Listing Job Deleted Successfully!');
     }
 }
