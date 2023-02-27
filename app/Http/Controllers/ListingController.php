@@ -16,7 +16,7 @@ class ListingController extends Controller
     {
         return view('listings.index',[
             'heading'=>'Latest Listings',
-            'listings'=>Listing::latest()->filter(request(['tag','search']))->get()
+            'listings'=>Listing::latest()->filter(request(['tag','search']))->paginate(4)
         ]);
     }
 
@@ -44,8 +44,12 @@ class ListingController extends Controller
             
 
         ]);
+        if ($request->hasFile('logo')) {
+            $formField['logo'] = $request->file('logo')->store('logos','public');
+        }
+        
         Listing::create( $formField);
-        return redirect('/');
+        return redirect('/')->with('message','Listing Job Create Successfully!');
     }
 
     /**

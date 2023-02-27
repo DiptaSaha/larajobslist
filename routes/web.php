@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ListingController::class,'index']);
 
 //Show Create to  Listings Form
-Route::get('/listing/create', [ListingController::class,'create'])->name('listing.create');
-Route::post('/listing', [ListingController::class,'store'])->name('listing.store');
+Route::get('/listings/create', [ListingController::class,'create'])->name('listing.create');
+Route::post('/listings', [ListingController::class,'store'])->name('listing.store');
+//Show Edit Form
+Route::get('/listings/{listing}/edit',[ListingController::class,'edit']);
 //Show a Single Data
-Route::get('/listing/{listing}',[ListingController::class,'show']);
+Route::get('/listings/{listing}',[ListingController::class,'show']);
