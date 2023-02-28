@@ -34,7 +34,7 @@
                                
 
                                 <a
-                                    href="mailto:test@test.com"
+                                    href="mailto:.' {{$listing->email}}'"
                                     class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80"
                                     ><i class="fa-solid fa-envelope"></i>
                                     Contact Employer</a
@@ -46,7 +46,7 @@
                         </div>
                     </div>
               </x-card>
-              <x-card class="mt-4 p-2 flex space-x-6">
+              {{-- <x-card class="mt-4 p-2 flex space-x-6">
                 <a href="/listings/{{$listing->id}}/edit">
                     <i class="fa-solid fa-pencil"></i>Edit
                 </a>
@@ -57,7 +57,7 @@
                         <i class="fa-solid fa-trash"></i>DELETE
                     </button>
                 </form>
-              </x-card>
+              </x-card> --}}
             </div>
 
 </x-layout>
